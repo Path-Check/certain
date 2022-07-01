@@ -75,3 +75,15 @@ Certificate Expiration Date: 130921
 
 Signature is VALID
 </code></pre>
+
+### Export to JSON with: 
+
+```
+certain -ml ICAO_health_ml_27May2022.ml -d -tl > registry_health.json
+```
+
+If compiling from source: 
+````
+git clone 
+
+java -jar target/certain-0.98\ build\ 210817.jar -ml ICAO_health_ml_27May2022.ml -d -tl > registry_health.json
