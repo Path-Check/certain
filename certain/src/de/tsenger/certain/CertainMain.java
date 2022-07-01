@@ -64,6 +64,15 @@ public class CertainMain {
 	@Parameter(names = {"--fingerprint", "-f"}, description = "Show MD5, SHA1, SHA224 and SHA256 printerprint for certificates and requests.")
 	private boolean showFingerprints = false;
 	
+	@Parameter(names = {"--search","-s"}, description = "Outputs the information of only one certificate")
+	public String filterBySubject;
+
+	@Parameter(names = {"--pem","-p"}, description = "Print PEM Files")
+	public String pem;
+
+	@Parameter(names = {"--trustlist", "-tl"}, description = "CVCA Master List as JSON")
+	private boolean trustList = false;
+
 	private CertStorage certStore = null;
 	private CVCertificateRequest dvReq = null;
 	private CVCertificate linkCert = null;	
@@ -120,8 +129,13 @@ public class CertainMain {
 		}
 		
 		/** Master List **/
-		if (mlParser!=null) {
+		if (mlParser!=null && !trustList) {
 			printMasterListInfo();
+		}
+
+		/** Master List **/
+		if (trustList) {
+			printTrustListInfo();
 		}
 		
 		/** Deviation List **/
@@ -456,7 +470,14 @@ public class CertainMain {
 	 * Show Master List Infos
 	 */
 	private void printMasterListInfo() { //TODO cleanup and print more details 
-		System.out.println(mlParser.getMasterListInfoString(showDetails));		    
+		System.out.println(mlParser.getMasterListInfoString(showDetails, filterBySubject));		    
+	}
+
+		/**
+	 * Show Master List Infos
+	 */
+	private void printTrustListInfo() { //TODO cleanup and print more details 
+		System.out.println(mlParser.getTrustListJson(showDetails, filterBySubject));		    
 	}
 	
 	/**
