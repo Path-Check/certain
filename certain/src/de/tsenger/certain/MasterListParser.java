@@ -180,7 +180,7 @@ public class MasterListParser {
 			sw.write("      \"status\": \"current\",\n");
 			sw.write("      \"validFromDT\": \""+ formatter.format(x509Cert.getNotBefore()) +"\",\n");
 			sw.write("      \"validUntilDT\": \""+ formatter.format(x509Cert.getNotAfter()) +"\",\n");
-			sw.write("      \"didDocument\": \"" + toPEM("CERTIFICATE", x509Cert.getEncoded()).replaceAll("\n", "") + "\",\n");
+			sw.write("      \"didDocument\": \"" + toPEM("CERTIFICATE", x509Cert.getEncoded()).replaceAll("\n", "\\\\n") + "\",\n");
 			sw.write("      \"credentialType\": [\n");
 			sw.write("      	\"icao.vacc\",\n");
 			sw.write("      	\"icao.test\"\n");
