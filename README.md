@@ -78,12 +78,13 @@ Signature is VALID
 
 ### Export to JSON with: 
 
-```
-certain -ml ICAO_health_ml_27May2022.ml -d -tl > registry_health.json
+```bash
+certain -ml file.ml -d -tl > file.json
 ```
 
 If compiling from source: 
-````
-git clone 
-
-java -jar target/certain-0.98\ build\ 210817.jar -ml ICAO_health_ml_27May2022.ml -d -tl > registry_health.json
+```bash
+git clone https://github.com/Path-Check/certain.git
+mvn package
+java -jar target/certain-0.98\ build\ 210817.jar -ml file.ml -d -tl > file.json
+```
